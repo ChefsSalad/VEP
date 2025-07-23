@@ -1,0 +1,10 @@
+#git+https://github.com/Project-MONAI/MONAI.git@07de215c
+nibabel
+tqdm==4.59.0
+einops==0.4.1
+tensorboardX==2.1
+segmentation-models-pytorch ==0.4.0
+monai
+tifffile
+optimizers
+opencv-python
