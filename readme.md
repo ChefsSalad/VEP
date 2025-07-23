@@ -8,7 +8,7 @@ Its contributions include:
 
 * **Effective Data Preprocessing**: The method analyzed the Hounsfield Unit (HU) distribution in the lesion regions of a publicly available colorectal tumor CT medical image dataset and designed a targeted preprocessing pipeline. This includes intensity truncation based on HU value distribution and noise cropping using a lightweight object detection model to remove non-tissue areas and irrelevant instrument interference.
 
-<img src="figure/preprocessing.png" alt="Data Preprocessing Pipeline" width="50%" style="margin: 0 auto">
+<img src="figure/preprocessing.png" alt="Data Preprocessing Pipeline" width="50%">
 
 * **Lightweight 2.5D Data Structure with slice-wise attention mechanism** is proposed, enabling lightweight yet semantically rich spatial representation by stacking adjacent slices along the channel dimension. This mechanism dynamically models the contribution of different slices(Channels with lower transparency in the "Reweighted Feature Map" indicate higher attention weights).
 
@@ -50,4 +50,4 @@ Below are visualizations of the segmentation results.
 
 <img src="figure/radar.png" alt="Dual-branch Co-attention" width="75%">
 
-<img src="figure/box.png" alt="Dual-branch Co-attention" width="75%">
+<img src="figure/box.png" alt="Dual-branch Co-attention" width="100%">
