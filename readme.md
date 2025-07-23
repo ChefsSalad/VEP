@@ -1,53 +1,95 @@
 ## Visual Perception-Enhanced Segmentation
 
-### Project Introduction
+---
 
-This project introduces a novel **Visual Perception-Enhanced Segmentation Method**.
+## 🧠 Project Overview
 
-Its contributions include:
+This project introduces a novel **Visual Perception-Enhanced Segmentation** framework designed for lightweight and accurate medical image segmentation. It focuses on preprocessing, slice-wise attention, and collaborative dual-branch perception to enhance robustness and precision.
 
-* **Effective Data Preprocessing**: The method analyzed the Hounsfield Unit (HU) distribution in the lesion regions of a publicly available colorectal tumor CT medical image dataset and designed a targeted preprocessing pipeline. This includes intensity truncation based on HU value distribution and noise cropping using a lightweight object detection model to remove non-tissue areas and irrelevant instrument interference.
+---
 
-<img src="figure/preprocessing.png" alt="Data Preprocessing Pipeline" >
+## 🔧 Contributions Overview
 
-* **Lightweight 2.5D Data Structure with slice-wise attention mechanism** is proposed, enabling lightweight yet semantically rich spatial representation by stacking adjacent slices along the channel dimension. This mechanism dynamically models the contribution of different slices(Channels with lower transparency in the "Reweighted Feature Map" indicate higher attention weights).
+### 1. 🧼 Effective Data Preprocessing
 
-<img src="figure/sliceattention.png" alt="Slice attention" >
+This method analyzes the Hounsfield Unit (HU) distribution from a colorectal tumor CT dataset, and designs a two-step preprocessing pipeline:
 
+- **HU-based intensity truncation**
+- **Noise cropping using object detection**
 
+<p align="center">
+  <img src="figure/preprocessing.png" alt="Data Preprocessing Pipeline" width="50%">
+</p>
+<p align="center"><em>Figure 1. Data preprocessing pipeline for HU clipping and noise removal.</em></p>
 
-<img src="figure/SAH.png" alt="Channel Attention Effects Visualization" >
+---
 
-* **Enhanced Visual Perception Mechanism (VEP)**: A mechanism for collaborative modeling of long-range global pixel dependencies and multi-scale local texture information was developed. This involves a **dual-branch co-attention mechanism** for adaptive feature fusion, enhancing representation capabilities for different scale regions and improving segmentation accuracy in complex backgrounds and blurry edges.
+### 2. 🧠 Lightweight 2.5D Slice-Wise Attention
 
-<img src="figure/MBCA.png" alt="Dual-branch Co-attention" >
+We propose a 2.5D data structure where adjacent slices are stacked as channels. A slice-wise attention module dynamically reweights each channel to focus on informative regions.
 
-Experimental results demonstrate that this method significantly improves segmentation accuracy and stability while maintaining low model complexity, offering a new solution for lightweight, high-precision medical image segmentation.
+<p align="center">
+  <img src="figure/sliceattention.png" alt="Slice Attention Mechanism" width="50%">
+</p>
+<p align="center"><em>Figure 2. Slice-wise attention mechanism highlights important slices.</em></p>
 
+<p align="center">
+  <img src="figure/SAH.png" alt="Channel Attention Effects" width="50%">
+</p>
+<p align="center"><em>Figure 3. Visualization of slice-level attention weights.</em></p>
 
+---
 
-## Mathematical Notations
+### 3. 🧩 Enhanced Visual Perception Module 
 
-**Hounsfield Unit (HU) Formula**:
-                                                                                           $$HU=1000\times\frac{\mu-\mu_{water}}{\mu_{water}}$$
-Where $\mu$ is the linear attenuation coefficient of the medium, and $\mu_{water}$ is the linear attenuation coefficient of water.
+We design a **dual-branch co-attention mechanism** to fuse global context and multi-scale local texture features, enabling strong segmentation under complex conditions.
 
-**Normalization Formula**:
-                                                                                  $$x_{norm}=\frac{clip(x,HU_{min},HU_{max})-HU_{min}}{HU_{max}-HU_{min}}$$
-Where $x$ is the original pixel value, and $HU_{min}$ and $HU_{max}$ are set to clip values outside the 0.05% tails of the distribution
+<p align="center">
+  <img src="figure/MBCA.png" alt="Dual-branch Co-attention" width="50%">
+</p>
+<p align="center"><em>Figure 4. Visual perception module combining long-range and local texture cues.</em></p>
 
-## Results
+---
 
-Below are visualizations of the segmentation results.
+## 🧮 Mathematical Notations
 
-**Color Key for Segmentation Overlay**:
+### Hounsfield Unit (HU):
 
-* **Green**: Indicates False Negatives (missed detection).
-* **Red**: Indicates False Positives (over-detection).
-* **Yellow**: Indicates Correct Predictions (intersection of ground truth and prediction).
+​                                                                  $$HU=1000\times\frac{\mu-\mu_{water}}{\mu_{water}}$$
 
-<img src="figure/results.png" alt="Dual-branch Co-attention" >
+Where:
+- $\mu$: Attenuation coefficient of tissue  
+- $\mu_{water}$: Attenuation coefficient of water
 
-<img src="figure/radar.png" alt="Dual-branch Co-attention" >
+### Normalization:
 
-<img src="figure/box.png" alt="Dual-branch Co-attention">
+​                                                          $$x_{norm}=\frac{clip(x,HU_{min},HU_{max})-HU_{min}}{HU_{max}-HU_{min}}$$
+
+Where $HU_{min}$ and $HU_{max}$ are clipped based on the 0.05% percentile tails.
+
+---
+
+## 📊 Experimental Results
+
+### ✅ Visual Segmentation Results
+
+The following visualizations demonstrate segmentation overlays and prediction reliability:
+
+<p align="center">
+  <img src="figure/results.png" alt="Segmentation Overlay" width="75%">
+</p>
+<p align="center"><em>Figure 5. Prediction overlay: green (FN), red (FP), yellow (TP).</em></p>
+
+---
+
+### 📈 Quantitative Comparisons
+
+<p align="center">
+  <img src="figure/radar.png" alt="Radar Plot" width="75%">
+</p>
+<p align="center"><em>Figure 6. Radar plot comparing evaluation metrics across methods.</em></p>
+
+<p align="center">
+  <img src="figure/box.png" alt="Box Plot" width="75%">
+</p>
+<p align="center"><em>Figure 7. Dice coefficient distribution across test samples.</em></p>
