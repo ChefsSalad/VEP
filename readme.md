@@ -2,6 +2,10 @@
 
 ---
 
+## 🏆 Competition & Recognition
+
+This project achieved **1st place** in the AI medical image segmentation track co-organized by **Shanghai AI Laboratory** and **Ruijin Hospital, Shanghai Jiao Tong University School of Medicine**. As a result, it was invited for presentation at the **2023 Healthy China Sinan Summit** and the **Frontiers of Digital Medicine Forum**.
+
 ## 🧠 Project Overview
 
 This project introduces a novel **Visual Perception-Enhanced Segmentation** framework designed for lightweight and accurate medical image segmentation. It focuses on preprocessing, slice-wise attention, and collaborative dual-branch perception to enhance robustness and precision.
